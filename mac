@@ -4,6 +4,21 @@
 # Be prepared to turn your laptop (or desktop, no haters here)
 # into an awesome development machine.
 
+# Preparing arguments
+
+ruby_version=
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -rv | --ruby-version )   shift
+                                ruby_version=$1
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
 fancy_echo() {
   local fmt="$1"; shift
 
@@ -156,7 +171,9 @@ brew_install_or_upgrade 'openssl'
 brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'libyaml'
 
-ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
+if [ -z "$ruby_version" ]; then
+  ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
+fi
 
 eval "$(rbenv init - zsh)"
 

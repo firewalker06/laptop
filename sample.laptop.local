@@ -3,5 +3,10 @@
 brew_install_or_upgrade 'elasticsearch'
 brew_launchctl_restart 'elasticsearch'
 brew cask install 'google-chrome'
+brew cask install 'atom'
+
+# Android Dev
 brew cask install 'android-studio'
+
+# iOS Dev
 gem_install_or_update 'cocoapods'
